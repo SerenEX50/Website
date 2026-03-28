@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Login & Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#f59e0b',
+                        dark: '#0f172a'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .balance-animation {
+            animation: balancePulse 2s infinite;
+        }
+        @keyframes balancePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+            <div class="text-center mb-8">
+                <div class="mx-auto bg-primary w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-university text-white text-2xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">Welcome Back</h1>
+                <p class="text-gray-600 mt-2">Sign in to access your account</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Account Number</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" id="accountNumber" class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your account number" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="password" class="pl-10 w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your password" required>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember" type="checkbox" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                    </div>
+                    <button type="button" class="text-sm text-primary hover:text-secondary font-medium">Forgot Password?</button>
+                </div>
+
+                <button type="submit" class="w-full bg-primary hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-lg transition duration-300 transform hover:scale-[1.02]">
+                    Sign In
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <p class="text-gray-600 text-sm">
+                    Don't have an account? 
+                    <button class="text-primary font-medium hover:text-secondary ml-1">Register now</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Screen (Hidden by default) -->
+    <div id="homeScreen" class="hidden w-full max-w-6xl">
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-primary text-white p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-xl font-bold">Bank Dashboard</h1>
+                        <p class="text-blue-100 text-sm">Good day, John Doe</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="bg-white bg-opacity-20 hover:bg-opacity-30 p-2 rounded-full transition">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        <div class="flex items-center space-x-2">
+                            <div class="bg-white bg-opacity-20 rounded-full p-1">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <span class="font-medium">John Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balance Section -->
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-gray-600 text-sm">Total Balance</p>
+                        <h2 class="text-3xl font-bold text-gray-800 balance-animation">$24,560.75</h2>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-gray-600 text-sm">Available Funds</p>
+                        <p class="text-xl font-semibold text-green-600">$18,320.50</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Quick Actions</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button class="card-hover bg-blue-50 hover:bg-blue-100 p-4 rounded-xl text-center transition">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-exchange-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <p class="font-medium text-gray-800">Transfer</p>
+                    </button>
+                    <button class="card-hover bg-green-50 hover:bg-green-100 p-4 rounded-xl text-center transition">
+                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-money-bill-wave text-green-600 text-xl"></i>
+                        </div>
+                        <p class="font-medium text-gray-800">Deposit</p>
+                    </button>
+                    <button class="card-hover bg-purple-50 hover:bg-purple-100 p-4 rounded-xl text-center transition">
+                        <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-file-invoice-dollar text-purple-600 text-xl"></i>
+                        </div>
+                        <p class="font-medium text-gray-800">Pay Bills</p>
+                    </button>
+                    <button class="card-hover bg-orange-50 hover:bg-orange-100 p-4 rounded-xl text-center transition">
+                        <div class="bg-orange-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="fas fa-history text-orange-600 text-xl"></i>
+                        </div>
+                        <p class="font-medium text-gray-800">History</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="p-6 border-t">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Recent Transactions</h3>
+                    <button class="text-primary text-sm font-medium hover:text-secondary">View All</button>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-arrow-down text-green-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Salary Deposit</p>
+                                <p class="text-sm text-gray-600">Today, 09:30 AM</p>
+                            </div>
+                        </div>
+                        <p class="font-semibold text-green-600">+$3,200.00</p>
+                    </div>
+                    <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-arrow-up text-red-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Grocery Shopping</p>
+                                <p class="text-sm text-gray-600">Yesterday, 06:15 PM</p>
+                            </div>
+                        </div>
+                        <p class="font-semibold text-red-600">-$85.30</p>
+                    </div>
+                    <div class="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition">
+                        <div class="flex items-center space-x-3">
+                            <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center">
+                                <i class="fas fa-mobile-alt text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">Mobile Payment</p>
+                                <p class="text-sm text-gray-600">Jun 12, 03:45 PM</p>
+                            </div>
+                        </div>
+                        <p class="font-semibold text-red-600">-$45.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-gray-50 p-4 border-t">
+                <div class="flex justify-between items-center">
+                    <p class="text-gray-600 text-sm">© 2023 BankSecure. All rights reserved.</p>
+                    <div class="flex space-x-4">
+                        <button class="text-gray-500 hover:text-primary">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="text-gray-500 hover:text-primary">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="text-gray-500 hover:text-primary">
+                            <i class="fab fa-instagram"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginScreen = document.getElementById('loginScreen');
+            const homeScreen = document.getElementById('homeScreen');
+            const loginForm = document.getElementById('loginForm');
+
+            // Handle login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const accountNumber = document.getElementById('accountNumber').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple validation
+                if(accountNumber && password) {
+                    // Hide login screen and show home screen
+                    loginScreen.classList.add('hidden');
+                    homeScreen.classList.remove('hidden');
+                    
+                    // Add animation effect
+                    homeScreen.classList.add('fade-in');
+                } else {
+                    alert('Please fill in all fields');
+                }
+            });
+
+            // Simulate some card interactions
+            const cards = document.querySelectorAll('.card-hover');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
