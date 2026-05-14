@@ -1,1 +1,2 @@
-# Website
+# Bank Mock Website
+A mock bank website is a simulated online banking platform created for educational, practice, or demonstration purposes. It imitates the basic functions of a real banking system, such as user registration, login authentication, balance tracking, fake money transfers, QR code payments, and transaction history management, without involving real financial transactions. The website uses a database to store and update user data and virtual balances in real time. Its purpose is to help developers and users understand how digital banking systems work while providing a safe environment for testing and learning web development concepts.
