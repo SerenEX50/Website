@@ -10,10 +10,9 @@ A mock bank website is a simulated online banking platform created for education
 2. CSS
 3. JavaScript
 ## Developers
-<p style="color:red;">1. John Axel Robles
+1. John Axel Robles
 2. Kyle De Grano
 3. Patrick Angelo Juaneza
 4. John Matthew Azutillo
 5. Irish Razon
 6. Krizel Joy Padeno
-</p>
