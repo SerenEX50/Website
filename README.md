@@ -13,9 +13,8 @@ This project helps developers and users understand how online banking systems wo
 - User registration and login authentication
 - Virtual account balance management
 - Transaction history tracking
-- Fake money transfer system *(In Progress)*
-- QR code payment simulation
-- Real-time database updates
+- Fake money transfer system
+- Real-time database updates *(In Progress)*
 
 ---
 
